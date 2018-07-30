@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<head>
+    <title>My precious time</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+
+
+<header id="header">
+    <h1> Know how you spend you time</h1>
+</header>
+
+<div class="container">
+<div id="work">
+
+    <p id="WdateStart">Work time</p>
+        <button type="button" onclick="TimeStamp('WdateStart')">Started at</button>
+    <p id="WdateStop"></p>
+    <button type="button" onclick="TimeStamp('WdateStop')">Stopped at</button>
+</div>
+
+<div id="relax">
+    <p id="RdateStart">Relax</p>
+    <button type="button"  onclick="TimeStamp('RdateStart')">Started at</button>
+    <p id="RdateStop"></p>
+    <button type="button" onclick="TimeStamp('RdateStop')">Stopped at</button>
+</div>
+
+<div id="family">
+    <p id="FdateStart">Family time</p>
+    <button type="button" onclick="TimeStamp('FdateStart')">Started at</button>
+    <p id="FdateStop"></p>
+    <button type="button" onclick="TimeStamp('FdateStop')">Stopped at</button>
+
+</div>
+
+<div id="sleep">
+    <p id="SdateStart">Sleep time</p>
+    <button type="button" onclick="TimeStamp('SdateStart')">Started at</button>
+    <p id="SdateStop"></p>
+    <button type="button" onclick="TimeStamp('SdateStop')">Stopped at</button>
+</div>
+
+
+<script src="javascripts/time.js"></script>
+<script src="javascripts/jquery-3.3.1.min.js"></script>
+<p id="display"></p>
+
+
+</div>
+
+<input type="radio" name="gender" value="male">male<br>
+<input type="radio" name="gender" value="female">female<br>
+<script>
+    $(document).ready(function(){
+        $('input[type="radio"]').click(function () {
+            var gender = $(this).val();
+            $.ajax({
+                url:"insert.php",
+                method:"POST",
+                data:{gender:gender},
+                success: function (data) {
+                    $('result').html(data);
+                }
+            });
+
+        });
+    });
+</script>
+
+</body>

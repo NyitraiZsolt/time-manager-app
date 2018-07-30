@@ -1,0 +1,81 @@
+
+body {
+    background-color: lightgrey;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+#header {
+    background:  url(../images/header.jpg);
+    height: 177px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: "Bookman Old Style";
+
+}
+
+DIV#work {
+    background-repeat: no-repeat;
+    background-image: url("../images/work.jpg");
+    background-position: center;
+    background-size: cover;
+    margin-right: 200px;
+    margin-left: 100px;
+    margin-top: 10px;
+    padding: 5px;
+    height: 300px;
+    width: 1000px;
+
+}
+DIV#relax {
+    background-repeat: no-repeat;
+    background-image: url("../images/relaxation2.jpg");
+    background-position: center;
+    background-size: cover;
+    margin-left: 100px;
+    margin-right: 200px;
+    margin-top: 5px;
+    padding: 5px;
+    height: 300px;
+    width: 1000px;
+
+}
+
+
+DIV#family {
+    background-repeat: no-repeat;
+    background-image: url("../images/familly.jpg");
+    background-position: center;
+    background-size: cover;
+    margin-left: 100px;
+    margin-right: 200px;
+    margin-top: 5px;
+    padding: 5px;
+    height: 300px;
+    width: 1000px;
+
+}
+DIV#sleep {
+    background-repeat: no-repeat;
+    background-image: url("../images/sleep.jpg");
+    background-position: center;
+    background-size: cover;
+    margin-left: 100px;
+    margin-right: 200px;
+    margin-top: 5px;
+    margin-bottom: 100px;
+    padding: 5px;
+    height: 300px;
+    width: 1000px;
+}
+
+#buttons
