@@ -23,59 +23,29 @@ body {
 
 }
 
-DIV#work {
+.activity {
     background-repeat: no-repeat;
-    background-image: url("../images/work.jpg");
     background-position: center;
     background-size: cover;
     margin-right: 200px;
     margin-left: 100px;
     margin-top: 10px;
     padding: 5px;
-    height: 300px;
-    width: 1000px;
-
+    height: 100px;
+    width: 300px;
 }
-DIV#relax {
-    background-repeat: no-repeat;
+
+#work {
+    background-image: url("../images/work.jpg");
+}
+#relax {
     background-image: url("../images/relaxation2.jpg");
-    background-position: center;
-    background-size: cover;
-    margin-left: 100px;
-    margin-right: 200px;
-    margin-top: 5px;
-    padding: 5px;
-    height: 300px;
-    width: 1000px;
-
 }
-
-
-DIV#family {
-    background-repeat: no-repeat;
+#family {
     background-image: url("../images/familly.jpg");
-    background-position: center;
-    background-size: cover;
-    margin-left: 100px;
-    margin-right: 200px;
-    margin-top: 5px;
-    padding: 5px;
-    height: 300px;
-    width: 1000px;
-
 }
-DIV#sleep {
-    background-repeat: no-repeat;
+#sleep {
     background-image: url("../images/sleep.jpg");
-    background-position: center;
-    background-size: cover;
-    margin-left: 100px;
-    margin-right: 200px;
-    margin-top: 5px;
-    margin-bottom: 100px;
-    padding: 5px;
-    height: 300px;
-    width: 1000px;
 }
 
 #buttons

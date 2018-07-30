@@ -1,6 +1,7 @@
 const API_URL = {
     START: '/time-frame/start',
     STOP: '/time-frame/stop',
+    INPROGRESS: '/time-frame/inprogress'
 };
 
 
@@ -14,6 +15,7 @@ $(".start-button").on('click', function (e) {
     // this.style.display = 'none';
     $(this).hide();
     //TODO show stop button
+    $(`#${event} .stop-button`).show();
 });
 
 $(".stop-button").on('click', function (e) {
@@ -23,14 +25,14 @@ $(".stop-button").on('click', function (e) {
 
     stop(event, time);
 
-    this.style.display = 'none';
-    //$(this).hide();
-    //TODO show start button
+    //this.style.display = 'none';
+    $(this).hide();
+    $(`#${event} .start-button`).show();
 });
 
 function getCurrentTime() {
     let dNow = new Date();
-    let currentTime = (dNow.getDate() + '/' + dNow.getMonth() + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    let currentTime = (dNow.getDate() + '/' + (dNow.getMonth() + 1) + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
     return currentTime;
 }
 
@@ -60,6 +62,24 @@ function stop(event, time) {
         console.log('response', response);
     });
 }
+
+function getInProgress() {
+    $.ajax({
+        url: API_URL.INPROGRESS,
+        method: 'GET'
+    }).done(function (inProgressActions) {
+        console.log('response', inProgressActions);
+        $(`.container .start-button`).show();
+        inProgressActions.forEach(function(inProgressAction) {
+            const event = inProgressAction.event;
+            console.info(event);
+            $(`#${event} .stop-button`).show();
+            $(`#${event} .start-button`).hide();
+        });
+    });
+}
+
+getInProgress();
 
 // for external API USE http://nick:3000/agenda
 // window.index = {
