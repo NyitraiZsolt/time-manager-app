@@ -1,6 +1,10 @@
 const API_URL = {
     START: '/time-frame/start',
     STOP: '/time-frame/stop',
+    INPROGRESS: '/time-frame/inprogress',
+    GETALL: '/time-frame/getAll',
+    GETTIME: '/time-frame/getTime',
+    GETEVENTTOTAL: '/time-frame/getEventTotal'
 };
 
 
@@ -14,6 +18,7 @@ $(".start-button").on('click', function (e) {
     // this.style.display = 'none';
     $(this).hide();
     //TODO show stop button
+    $(`#${event} .stop-button`).show();
 });
 
 $(".stop-button").on('click', function (e) {
@@ -23,14 +28,14 @@ $(".stop-button").on('click', function (e) {
 
     stop(event, time);
 
-    this.style.display = 'none';
-    //$(this).hide();
-    //TODO show start button
+    //this.style.display = 'none';
+    $(this).hide();
+    $(`#${event} .start-button`).show();
 });
 
 function getCurrentTime() {
     let dNow = new Date();
-    let currentTime = (dNow.getDate() + '/' + dNow.getMonth() + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes());
+    let currentTime = (dNow.getFullYear()+'-'+ (dNow.getMonth() + 1) + '-' +dNow.getDate()  + ' ' + dNow.getHours() + ':' + dNow.getMinutes()+ ':' + dNow.getSeconds());
     return currentTime;
 }
 
@@ -61,77 +66,85 @@ function stop(event, time) {
     });
 }
 
-// for external API USE http://nick:3000/agenda
-// window.index = {
-//     getRow: function(currentTime) {
-//         return "<tr>" +
-//             "<td>" + `time.event` + "</td>" +
-//             "<td>" + `time.start` + "</td>" +
-//             "<td>" + `time.stop` + "</td>" +
-//             `<td>` +
-//             `</td>` +
-//             "</tr>";
-//     },
-//
-//     load: function () {
-//         $.ajax({
-//             url: API_URL.READ,
-//             method: "GET"
-//         }).done(function (time) {
-//             console.info('done:', time);
-//             index.display(persons);
-//         });
-//     },
-//
-//     getActionRow: function() {
-//         return '<tr>' +
-//             '<td><input type="text" required name="event"></td>' +
-//             '<td><input type="text" name="start"></td>' +
-//             '<td><input type="text" required name="stop"></td>' +
-//             '</tr>';
-//     },
-//
-//
-//     add: function(currentTime) {
-//         $.ajax({
-//             url: API_URL.CREATE,
-//             method: "POST",
-//             data: {
-//                 currentTime: currentTime
-//             }
-//         }).done(function (response) {
-//             if (response.success) {
-//                 index.load();
-//             }
-//         });
-//     },
-//
-//     save: function(currentTime) {
-//         $.ajax({
-//             url: API_URL.UPDATE,
-//             method: "POST",
-//             data: {
-//                 currentTime: currentTime
-//             }
-//         }).done(function (response) {
-//             if (response.success) {
-//                 editId = '';
-//                 index.load();
-//             }
-//         });
-//     },
-//
-// //TODO
-//     display: function(currentTime) {
-//         window.times = times;
-//         var rows = '';
-//
-//         times.forEach(time => rows += index.getRow(time));
-//         rows += index.getActionRow();
-//         $(`#start-stop tbody`).html(rows);
-//     }
-// };
+function getInProgress() {
+    $.ajax({
+        url: API_URL.INPROGRESS,
+        method: 'GET'
+    }).done(function (inProgressActions) {
+        console.log('response', inProgressActions);
+        $(`.container .start-button`).show();
+        inProgressActions.forEach(function(inProgressAction) {
+            const event = inProgressAction.event;
+            console.info(event);
+            $(`#${event} .stop-button`).show();
+            $(`#${event} .start-button`).hide();
+        });
+    });
+}
 
-// var times = [];
-// console.info('loading data');
-// index.load();
+getInProgress();
+
+
+function getAll() {
+    $.ajax({
+        url: API_URL.GETALL,
+        method: 'GET'
+    }).done(function (data) {
+        console.log('response', data);
+        let table = '<table>';
+        data.forEach(function (row) {
+            table += '<tr>';
+            table += '<td>' + row.id + '</td>';
+            table += '<td>' + row.event + '</td>';
+            table += '<td>' + row.start + '</td>';
+            table += '<td>' + row.stop + '</td>';
+            table += '</tr>';
+        });
+        table += '</table>';
+        $(`#stats_content`).html(table);
+    });
+}
+
+function getTime(event) {
+        $.ajax({
+            url: API_URL.GETTIME,
+            method: 'GET',
+            data: {
+                event: event,
+            }
+        }).done(function (data) {
+            console.log('response',data);
+            let table='<table>';
+            data.forEach(function(row) {
+                table+='<tr>';
+                table+='<td>'+row.event+'</td>';
+                table+='<td>'+row.diff+'</td>';
+                table+='</tr>';
+            });
+            table+='</table>';
+            $(`#getTime_content`).html(table);
+        });
+}
+
+function getEventTotal(event) {
+    $.ajax({
+        url: API_URL.GETEVENTTOTAL,
+        method: 'GET',
+        data: {
+            event: event,
+        }
+    }).done(function (data) {
+        console.log('response',data);
+        let table='<table>';
+        data.forEach(function(row) {
+            table+='<tr>';
+            table+='<td>'+'</td>'
+            table+='<td>'+row.timeStampDiff+'</td>'
+            table+='</tr>';
+        });
+        table+='</table>';
+        $(`#getEventTotal_content`).html(table);
+    });
+}
+
+//TODO table for each event // getevent total for 1 event

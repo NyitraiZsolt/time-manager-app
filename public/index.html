@@ -1,9 +1,31 @@
 <!DOCTYPE HTML>
 <head>
-    <title>My precious time</title>
-    <link rel="stylesheet" href="stylesheets/reset.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-</head>
+    <head>
+        <title>My precious time</title>
+        <link rel="stylesheet" href="stylesheets/reset.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheets/navbar.css">
+
+    </head>
+    <div class="topnav" id="myTopnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <button class="dropbtn">Statistics
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Weekly</a>
+                <a href="#">Mountly</a>
+                <a href="#">Year</a>
+            </div>
+        </div>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
 
 <body>
 
@@ -13,44 +35,61 @@
 </header>
 
 <div class="container">
-<div id="work">
+    <div id="work" class="activity">
+        <h2>Work time</h2>
+        <button type="button" class="start-button" style="display: none">Start</button>
+        <button type="button" class="stop-button" style="display: none">Stop</button>
+    </div>
 
-    <p id="WdateStart">Work time</p>
-        <button type="button" class="start-button">Started at</button>
-    <p id="WdateStop"></p>
-    <button type="button"  class="stop-button">Stopped at</button>
-</div>
+    <div id="relax" class="activity">
+        <h2>Relax</h2>
+        <button type="button" class="start-button" style="display: none">Start</button>
+        <button type="button" class="stop-button" style="display: none">Stop</button>
+    </div>
 
-<div id="relax">
-    <p id="RdateStart">Relax</p>
-    <button type="button" class="start-button">Started at</button>
-    <p id="RdateStop"></p>
-    <button type="button" class="stop-button">Stopped at</button>
-</div>
+    <div id="family" class="activity">
+        <h2>Family time</h2>
+        <button type="button" class="start-button" style="display: none">Start</button>
+        <button type="button" class="stop-button" style="display: none">Stop</button>
+    </div>
 
-<div id="family">
-    <p id="FdateStart">Family time</p>
-    <button type="button" class="start-button">Started at</button>
-    <p id="FdateStop"></p>
-    <button type="button"  class="stop-button">Stopped at</button>
+    <div id="sleep" class="activity">
+        <h2>Sleep time</h2>
+        <button type="button" class="start-button" style="display: none">Start</button>
+        <button type="button" class="stop-button" style="display: none">Stop</button>
+    </div>
 
-</div>
 
-<div id="sleep">
-    <p id="SdateStart">Sleep time</p>
-    <button type="button" class="start-button">Started at</button>
-    <p id="SdateStop"></p>
-    <button type="button"  class="stop-button">Stopped at</button>
-</div>
+
+<!--STATS!!-->
+    <div id="stats" class="activity">
+        <h2>Time Spent on evet/clicks</h2>
+        <button onclick="getTime('work')">Work</button>
+        <button onclick="getTime('relax')">Relax</button>
+        <button onclick="getTime('family')">Family</button>
+        <button onclick="getTime('sleep')">Sleep</button>
+
+        <div id="getTime_content"></div>
+    </div>
+
+
+    <div id="totalStats" class="activity">
+        <h2>Total Time spent on events</h2>
+        <button onclick="getEventTotal('work')">Work</button>
+        <button onclick="getEventTotal('relax')">Relax</button>
+        <button onclick="getEventTotal('family')">Family</button>
+        <button onclick="getEventTotal('sleep')">Sleep</button>
+
+        <div id="getEventTotal_content"></div>
+    </div>
 
 
 
     <script src="javascripts/jquery-3.3.1.min.js"></script>
     <script src="javascripts/time.js"></script>
 
-<p id="display"></p>
+    <p id="display"></p>
 
 
 </div>
 </body>
-

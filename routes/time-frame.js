@@ -55,4 +55,44 @@ router.post('/stop', function(req, res, next) {
         });
     });
 });
+
+router.get('/getAll', function(req, res, next) {
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query(`SELECT id,event,DATE_FORMAT(start, "%d/%m/%Y %H:%i") as 'start',DATE_FORMAT(stop, "%d/%m/%Y %H:%i" ) as 'stop' FROM start_stop ORDER BY Id DESC`, function (err, result, fields) {
+            connection.release();
+            if (err) throw err;
+            console.log(result);
+            res.json(result);
+        });
+    });
+});
+
+router.get('/getTime', function(req, res, next) {
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        const event = req.query.event;
+        let sql = `SELECT id,event,TIMEDIFF(stop,start) as 'diff' FROM start_stop WHERE event = '${event}'`;
+        connection.query(sql, function (err, result, fields) {
+            connection.release();
+            if (err) throw err;
+            console.log(sql);
+            console.log(result);
+            res.json(result);
+        });
+    });
+});
+
+router.get('/getEventTotal', function(req, res, next) {
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query(`SELECT event,SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, start, stop))) as timeStampDiff FROM start_stop GROUP BY event`, function (err, result, fields) {
+            connection.release();
+            if (err) throw err;
+            console.log(result);
+            res.json(result);
+        });
+    });
+});
+
 module.exports = router;
