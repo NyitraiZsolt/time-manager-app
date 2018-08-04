@@ -147,4 +147,3 @@ function getEventTotal(event) {
     });
 }
 
-//TODO table for each event // getevent total for 1 event

@@ -66,7 +66,7 @@ router.get('/getAll', function(req, res, next) {
             res.json(result);
         });
     });
-});
+})
 
 router.get('/getTime', function(req, res, next) {
     pool.getConnection(function(err, connection) {
