@@ -105,6 +105,7 @@ function getAll() {
     });
 }
 
+
 function getTime(event) {
         $.ajax({
             url: API_URL.GETTIME,

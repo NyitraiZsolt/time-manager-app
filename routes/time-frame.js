@@ -68,6 +68,7 @@ router.get('/getAll', function(req, res, next) {
     });
 })
 
+
 router.get('/getTime', function(req, res, next) {
     pool.getConnection(function(err, connection) {
         if (err) throw err;
