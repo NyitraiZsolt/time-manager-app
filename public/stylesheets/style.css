@@ -3,6 +3,18 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+#work {
+    background-image: url("../images/work.jpg");
+}
+#relax {
+    background-image: url("../images/relaxation2.jpg");
+}
+#family {
+    background-image: url("../images/familly.jpg");
+}
+#sleep {
+    background-image: url("../images/sleep.jpg");
+}
 
 
 #header {
@@ -72,20 +84,28 @@ body {
 }
 
 
-#work {
-    background-image: url("../images/work.jpg");
+
+
+.start-button, .stop-button{
+    border:0;
+    background:transparent;
 }
-#relax {
-    background-image: url("../images/relaxation2.jpg");
+.start-button:hover {
+    color: black !important;
+    background: black;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
 }
-#family {
-    background-image: url("../images/familly.jpg");
-}
-#sleep {
-    background-image: url("../images/sleep.jpg");
+.stop-button:hover {
+    color: black !important;
+    background: black;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
 }
 
-#buttons
+
+#stop-button
+
 
 #totalStats{
     width: 200px;
@@ -110,16 +130,30 @@ body {
     height: 240px;
     border: 2px black;
 }
+
 #myChart{
-    width: 400px;
-    height: 200px;
-    float: right;
-
-
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    color: black;
 }
 #chart{
-    float: right;
-    position: fixed;
+    position: absolute;
     margin-left: 700px;
-    margin-top: -300px;
+    margin-top: -350px;
+    width: 700px;
+    height: 300px;
+    color: black;
+}
+#chart-axis-y text {
+    fill: black;
+    font-size:12px;
+}
+#chart-axis-x text {
+    font-size:12px;
+    fill:black;
+}
+img{
+    width:40px;
+    height: 40px;
 }

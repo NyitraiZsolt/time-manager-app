@@ -19,37 +19,36 @@
 <div class="container">
     <div id="work" class="activity">
         <h2>Work time</h2>
-        <button type="button" class="start-button" style="display: none">Start</button>
-        <button type="button" class="stop-button" style="display: none">Stop</button>
+        <button type="button" class="start-button" style="display: none"><img src="images/start.png" /></button>
+        <button type="button" class="stop-button" style="display: none"><img src="images/stop.png" /></button>
     </div>
 
     <div id="relax" class="activity">
         <h2>Relax</h2>
-        <button type="button" class="start-button" style="display: none">Start</button>
-        <button type="button" class="stop-button" style="display: none">Stop</button>
+        <button type="button" class="start-button" style="display: none"><img src="images/start.png" /></button>
+        <button type="button" class="stop-button" style="display: none"><img src="images/stop.png" /></button>
     </div>
 
     <div id="family" class="activity">
         <h2>Family time</h2>
-        <button type="button" class="start-button" style="display: none">Start</button>
-        <button type="button" class="stop-button" style="display: none">Stop</button>
+        <button type="button" class="start-button" style="display: none"><img src="images/start.png" /></button>
+        <button type="button" class="stop-button" style="display: none"><img src="images/stop.png" /></button>
     </div>
 
     <div id="sleep" class="activity">
         <h2>Sleep time</h2>
-        <button type="button" class="start-button" style="display: none">Start</button>
-        <button type="button" class="stop-button" style="display: none">Stop</button>
+        <button type="button" class="start-button" style="display: none"><img src="images/start.png" /></button>
+        <button type="button" class="stop-button" style="display: none"><img src="images/stop.png" /></button>
     </div>
 
 
-
-<!--all!!-->
+    <!--all!!-->
     <div id="sidebar">
         <button onclick="getAll()">All</button>
         <div id="stats_content"></div>
     </div>
-<!--STATS!!-->
-        <div id="stats" class="activity">
+    <!--STATS!!-->
+    <div id="stats" class="activity">
         <h2>Time Spent on evet/clicks</h2>
         <button onclick="getTime('work')">Work</button>
         <button onclick="getTime('relax')">Relax</button>
@@ -69,14 +68,12 @@
 
         <div id="getEventTotal_content"></div>
     </div>
+        <div id="chart">
+            <button onclick="getEventTotalPerWeek()">Chart</button>
 
-    <div id="chart">
-        <button onclick="getEventTotalPerWeek()">Chart</button>
 
-
-    <canvas id="myChart" width="400" height="200"></canvas>
-    </div>
-
+            <canvas id="myChart" ></canvas>
+        </div>
 
     <script src="javascripts/jquery-3.3.1.min.js"></script>
     <script src="javascripts/time.js"></script>
