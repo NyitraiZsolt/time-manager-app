@@ -138,8 +138,13 @@ function getEventTotal(event) {
         let table='<table>';
         data.forEach(function(row) {
             table+='<tr>';
-            table+='<td>'+'</td>'
-            table+='<td>'+row.timeStampDiff+'</td>'
+            table+='<td>'+row.event+'</td>'
+            let timeinsec=row.timeStampDiff;
+            let sec=timeinsec%60;
+            let timeinmin= Math.floor(timeinsec/60);
+            let min= timeinmin%60;
+            let hour=Math.floor(timeinmin/60);
+            table+='<td> '+'---'+''+hour+" : "+ (min<10?"0":"") + min+" : "+ (sec<10?"0":"") + sec +'</td>'
             table+='</tr>';
         });
         table+='</table>';
@@ -147,3 +152,70 @@ function getEventTotal(event) {
     });
 }
 
+function getEventTotalPerWeek(event) {
+    $.ajax({
+        url: API_URL.GETEVENTTOTAL+"PerWeek",
+        method: 'GET',
+    }).done(function (data) {
+        console.log('response',data);
+
+        var ctx = $("#myChart");
+        let myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                datasets: [
+                    {
+                        label: 'work',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        data: [0,0,0,0,0,0,0]
+                    },
+                    {
+                        label: 'sleep',
+                        borderColor: 'rgba( 159,255, 64, 1)',
+                        data: [0,0,0,0,0,0,0]
+                    },
+                    {
+                        label: 'relax',
+                        borderColor: 'rgba( 159, 64,255, 1)',
+                        data: [0,0,0,0,0,0,0]
+                    },
+                    {
+                        label: 'family',
+                        borderColor: 'rgba( 255, 64,255, 1)',
+                        data: [0,0,0,0,0,0,0]
+                    }
+
+
+                ]
+            },
+            options: {}
+        });
+
+
+        data.forEach(function(row) {
+
+            let eventIndex=0;
+            switch(row.event){
+                case 'work':
+                    eventIndex=0;
+                    break;
+                case 'sleep':
+                    eventIndex=1;
+                    break;
+                case 'relax':
+                    eventIndex=2;
+                    break;
+                case 'family':
+                    eventIndex=3;
+                    break;
+            }
+
+            myLineChart.data.datasets[eventIndex].data[row.day - 1]=row.timeStampDiff;
+        });
+
+        myLineChart.update();
+
+        console.log('update',myLineChart.data.datasets);
+    });
+}

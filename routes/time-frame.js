@@ -86,7 +86,20 @@ router.get('/getTime', function(req, res, next) {
 router.get('/getEventTotal', function(req, res, next) {
     pool.getConnection(function(err, connection) {
         if (err) throw err;
-        connection.query(`SELECT event,SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, start, stop))) as timeStampDiff FROM start_stop GROUP BY event`, function (err, result, fields) {
+        const event = req.query.event;
+        connection.query(`SELECT event, SUM(TIMESTAMPDIFF(SECOND, start, stop)) as timeStampDiff FROM start_stop WHERE event='${event}' GROUP BY event`, function (err, result, fields) {
+            connection.release();
+            if (err) throw err;
+            console.log(result);
+            res.json(result);
+        });
+    });
+});
+
+router.get('/getEventTotalPerWeek', function(req, res, next) {
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query(`SELECT event,DAYOFWEEK(start) as day,SUM(TIMESTAMPDIFF(SECOND, start, stop)) as timeStampDiff FROM start_stop GROUP BY event,day`, function (err, result, fields) {
             connection.release();
             if (err) throw err;
             console.log(result);

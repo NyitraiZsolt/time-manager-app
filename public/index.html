@@ -5,27 +5,9 @@
         <link rel="stylesheet" href="stylesheets/reset.css">
         <link rel="stylesheet" href="stylesheets/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="stylesheets/navbar.css">
 
     </head>
-    <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <div class="dropdown">
-            <button class="dropbtn">Statistics
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#">Weekly</a>
-                <a href="#">Mountly</a>
-                <a href="#">Year</a>
-            </div>
-        </div>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
 
 <body>
 
@@ -61,9 +43,13 @@
 
 
 
-
+<!--all!!-->
+    <div id="sidebar">
+        <button onclick="getAll()">All</button>
+        <div id="stats_content"></div>
+    </div>
 <!--STATS!!-->
-    <div id="stats" class="activity">
+        <div id="stats" class="activity">
         <h2>Time Spent on evet/clicks</h2>
         <button onclick="getTime('work')">Work</button>
         <button onclick="getTime('relax')">Relax</button>
@@ -74,7 +60,7 @@
     </div>
 
 
-    <div id="totalStats" class="activity">
+    <div id="totalStats" class="activity2">
         <h2>Total Time spent on events</h2>
         <button onclick="getEventTotal('work')">Work</button>
         <button onclick="getEventTotal('relax')">Relax</button>
@@ -84,10 +70,16 @@
         <div id="getEventTotal_content"></div>
     </div>
 
+    <div id="chart">
+        <button onclick="getEventTotalPerWeek()">Chart</button>
 
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
 
     <script src="javascripts/jquery-3.3.1.min.js"></script>
     <script src="javascripts/time.js"></script>
+    <script src="javascripts/Chart.min.js"></script>
 
     <p id="display"></p>
 

@@ -8,6 +8,7 @@
     "dev": "SET DEBUG=time-manager:* & npm run devstart"
   },
   "dependencies": {
+    "chart.js": "^2.7.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
