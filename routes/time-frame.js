@@ -63,7 +63,10 @@ router.get('/getAll', function(req, res, next) {
             connection.release();
             if (err) throw err;
             console.log(result);
-            res.json(result);
+            var filteredResult = result.filter(function(r) {
+                return r.start;
+            });
+            res.json(filteredResult);
         });
     });
 })
@@ -79,7 +82,10 @@ router.get('/getTime', function(req, res, next) {
             if (err) throw err;
             console.log(sql);
             console.log(result);
-            res.json(result);
+            var filteredResult = result.filter(function(r) {
+                return r.diff;
+            });
+            res.json(filteredResult);
         });
     });
 });

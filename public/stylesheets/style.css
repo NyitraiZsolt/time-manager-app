@@ -124,6 +124,7 @@ body {
 #getTime_content{
     overflow: auto;
     height: 240px;
+    margin-right: 10px;
 }
 #stats_content {
     overflow: auto;

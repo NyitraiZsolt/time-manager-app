@@ -46,6 +46,7 @@ function start(event, time) {
         method: 'POST',
         data: {
             event: event,
+            // TODO remove from js currentTime
             currentTime: time
         }
     }).done(function (response) {
@@ -107,24 +108,24 @@ function getAll() {
 
 
 function getTime(event) {
-        $.ajax({
-            url: API_URL.GETTIME,
-            method: 'GET',
-            data: {
-                event: event,
-            }
-        }).done(function (data) {
-            console.log('response',data);
-            let table='<table>';
-            data.forEach(function(row) {
-                table+='<tr>';
-                table+='<td>'+row.event+'</td>';
-                table+='<td>'+row.diff+'</td>';
-                table+='</tr>';
-            });
-            table+='</table>';
-            $(`#getTime_content`).html(table);
+    $.ajax({
+        url: API_URL.GETTIME,
+        method: 'GET',
+        data: {
+            event: event,
+        }
+    }).done(function (data) {
+        console.log('response',data);
+        let table='<table>';
+        data.forEach(function(row) {
+            table+='<tr>';
+            table+='<td>'+row.event+'</td>';
+            table+='<td>'+row.diff+'</td>';
+            table+='</tr>';
         });
+        table+='</table>';
+        $(`#getTime_content`).html(table);
+    });
 }
 
 function getEventTotal(event) {
@@ -168,6 +169,7 @@ function getEventTotalPerWeek(event) {
                 datasets: [
                     {
                         label: 'work',
+                        defaultFontColor:  "red",
                         borderColor: 'rgba(255, 159, 64, 1)',
                         data: [0,0,0,0,0,0,0]
                     },
@@ -186,32 +188,15 @@ function getEventTotalPerWeek(event) {
                         borderColor: 'rgba( 255, 64,255, 1)',
                         data: [0,0,0,0,0,0,0]
                     }
-
-
                 ]
             },
             options: {}
         });
 
 
+        const events = ['work', 'sleep', 'relax', 'family'];
         data.forEach(function(row) {
-
-            let eventIndex=0;
-            switch(row.event){
-                case 'work':
-                    eventIndex=0;
-                    break;
-                case 'sleep':
-                    eventIndex=1;
-                    break;
-                case 'relax':
-                    eventIndex=2;
-                    break;
-                case 'family':
-                    eventIndex=3;
-                    break;
-            }
-
+            let eventIndex = events.indexOf(row.event);
             myLineChart.data.datasets[eventIndex].data[row.day - 1]=row.timeStampDiff;
         });
 

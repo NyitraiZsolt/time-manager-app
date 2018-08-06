@@ -13,7 +13,7 @@
 
 
 <header id="header">
-    <h1> Know how you spend you time</h1>
+    <h1> Know how you spend your time</h1>
 </header>
 
 <div class="container">
@@ -61,10 +61,10 @@
 
     <div id="totalStats" class="activity2">
         <h2>Total Time spent on events</h2>
-        <button onclick="getEventTotal('work')">Work</button>
-        <button onclick="getEventTotal('relax')">Relax</button>
-        <button onclick="getEventTotal('family')">Family</button>
-        <button onclick="getEventTotal('sleep')">Sleep</button>
+        <button data-activity="work" onclick="getEventTotal('work')">Work</button>
+        <button data-activity="relax" onclick="getEventTotal('relax')">Relax</button>
+        <button data-activity="family" onclick="getEventTotal('family')">Family</button>
+        <button data-activity="sleep" onclick="getEventTotal('sleep')">Sleep</button>
 
         <div id="getEventTotal_content"></div>
     </div>
@@ -72,12 +72,12 @@
             <button onclick="getEventTotalPerWeek()">Chart</button>
 
 
-            <canvas id="myChart" ></canvas>
+            <canvas id="myChart"></canvas>
         </div>
 
     <script src="javascripts/jquery-3.3.1.min.js"></script>
-    <script src="javascripts/time.js"></script>
     <script src="javascripts/Chart.min.js"></script>
+    <script src="javascripts/time.js"></script>
 
     <p id="display"></p>
 
