@@ -94,11 +94,11 @@ function getAll() {
         console.log('response', data);
         let table = '<table>';
         data.forEach(function (row) {
-            table += '<tr>';
-            table += '<td>' + row.id + '</td>';
-            table += '<td>' + row.event + '</td>';
-            table += '<td>' + row.start + '</td>';
-            table += '<td>' + row.stop + '</td>';
+            table += '<tr style="border: 1px solid darkslategrey">';
+            table += '<td style="border: 1px solid darkslategrey">' + row.id + '</td>';
+            table += '<td style="border: 1px solid darkslategrey">' + row.event + '</td>';
+            table += '<td style="border: 1px solid darkslategrey">' + row.start + '</td>';
+            table += '<td style="border: 1px solid darkslategrey">' + row.stop + '</td>';
             table += '</tr>';
         });
         table += '</table>';
