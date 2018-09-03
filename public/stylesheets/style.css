@@ -1,7 +1,8 @@
 body {
+    background-size: cover;
     background-image: url("../images/BGTime-Management.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+
 }
 #work {
     background-image: url("../images/work.jpg");
@@ -115,6 +116,13 @@ body {
 
 }
 
+#sidebar{
+    color: whitesmoke;
+    font-family: Helvetica;
+    font-size: 17px;
+    font-style: italic;
+}
+
 .footer {
     background-color: whitesmoke;
     padding: 10px;
@@ -128,8 +136,22 @@ body {
 }
 #stats_content {
     overflow: auto;
-    height: 240px;
+    height: 200px;
     border: 2px black;
+}
+
+#stats{
+    color: whitesmoke;
+    font-family: Helvetica;
+    font-size: 17px;
+    font-style: italic;
+}
+
+#totalStats{
+    color: whitesmoke;
+    font-family: Helvetica;
+    font-size: 17px;
+    font-style: italic;
 }
 
 #myChart{
