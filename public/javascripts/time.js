@@ -170,22 +170,22 @@ function getEventTotalPerWeek(event) {
                     {
                         label: 'work',
                         defaultFontColor:  "red",
-                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderColor: 'rgba(20, 196, 255, 1)',
                         data: [0,0,0,0,0,0,0]
                     },
                     {
                         label: 'sleep',
-                        borderColor: 'rgba( 159,255, 64, 1)',
+                        borderColor: 'rgba( 20,255, 28, 1)',
                         data: [0,0,0,0,0,0,0]
                     },
                     {
                         label: 'relax',
-                        borderColor: 'rgba( 159, 64,255, 1)',
+                        borderColor: 'rgba( 255, 251, 28, 1)',
                         data: [0,0,0,0,0,0,0]
                     },
                     {
                         label: 'family',
-                        borderColor: 'rgba( 255, 64,255, 1)',
+                        borderColor: 'rgba( 255, 20, 20, 1)',
                         data: [0,0,0,0,0,0,0]
                     }
                 ]
